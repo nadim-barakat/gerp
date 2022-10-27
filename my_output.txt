@@ -1,0 +1,6 @@
+Query? Foo/a.cpp:1: ok so hello 
+Foo/a.cpp:2: hello from line 2 in a.cpp
+Foo/b.cpp:3: wow HELLO 
+Foo/b.cpp:4: ok heLLo 
+Foo/c.cpp:1: hello from 
+Query? 

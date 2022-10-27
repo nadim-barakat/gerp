@@ -1,0 +1,5 @@
+proj3-test-dirs/tinyData//test.txt:5: we are the champions
+proj3-test-dirs/tinyData//test.txt:6: we we we
+proj3-test-dirs/tinyData//test.txt:5: we are the champions
+proj3-test-dirs/tinyData//b/hehe.txt:1: remember all the puns?
+proj3-test-dirs/tinyData//test.txt:5: we are the champions
