@@ -1,92 +1,321 @@
-# gerp
+/**********************************************************
+* Title: Project 3: gerp 
+* Comp 15
+* README: 
+* this file contains important information about gerp's
+* purpose, help recieved, data structures used
+* 
+* Authors: [Partner Name] and Nadim Barakat, 4/12/22
+*********************************************************/
+B. Purpose of the program: 
 
-yes
+    The purpose of Gerp was to build a program that can search for 
+    a specific word in a directory and print the location and lines 
+    of that word searched for from all the files in the directory.  
 
-## Getting started
+C. Acknowledgements: 
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+    Firstly, Milod for the slides on hashes and the basic overview
+    of a hash table and function. 
+    
+    Secondly, the many TAs that helped us: 
+    - Nickolas with clarifying the duplicates, teaching us how to have 
+    std::hash hash a word_struct, and cleaning up our functions and README
+    - Sean that checked off our design
+    - Annika that helped with connecting GitLab to Atom and instead 
+      suggesting we use Liveshare. 
+    - Jack with suggesting how to fix duplicates by creating a separate 
+      line struct. 
+    - Matthew that answered our Piazza questions. 
+    - We spoke with Mahie and his partner 
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+D. Files provided: 
+    FSTreeTraversal.cpp:
+        The implementation for the FSTreeTraversal function. 
+        It prints the full paths of each file in the 
+        directory using recursion. 
+    
+    
+    hash_table.cpp: 
+        The implementation of the hash_table class. 
+        This file handles initializing and storing the file's 
+        contents so it is easy to insert all the words from a 
+        directory into a hash table. It also contains the actual 
+        hash function and expanding function, and handles the commands
+        for searching and writing to a new output file. 
 
-## Add your files
+    hash_table.h: 
+        The interface of the hash_table class. 
+        This allows for the creation of the hash table class 
+        which can be used by interact.cpp to search for words 
+        and see where those words appear in the files. 
+    
+    interact.cpp: 
+        The implementation of the interact class. 
+        This links the user with the hash_table. It allows for 
+        the user to input their query searches and specify the 
+        type of query which then interacts with the hash table class. 
+    
+    interact.h: 
+        The interface of the interact class.
+        This allows for the creation of an interact object which 
+        can be called in a main program. This gives the user
+        the ability to search for words without needing to know
+        what is happening in the background. 
+    
+    Makefile: 
+        This allows for the creation of the executable called 
+        gerp which the user can call alongside their directory
+        and output file to search for specific words. 
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+    README: 
+        This contains inforamtion on how to compile and run, 
+        the authors, help recieved, and data structures used. 
+    
+    stringProcessing.cpp: 
+        The implementation of the stringProcessing function. 
+        This function takes a string and strips off all leading 
+        and trailing non-alpha numeric characters, like %, $, and ?. 
+        It then returns that stripped string.
 
-```
-cd existing_repo
-git remote add origin https://gitlab.tufts.edu/nbarak02/gerp.git
-git branch -M main
-git push -uf origin main
-```
+    stringProcessing.h: 
+        The interface of the stringProcessing function. 
+        This has the function declaration that allows 
+        the user to use the function which removes 
+        all leading and trailing whitespace from a string. 
+    
+    main.cpp: 
+        This file was used by us constantly to test, espcially in week 2. 
+        This allowed us to pass in our inputs and verify whether our
+        code was working compared to the reference. 
+    
+    unit_tests.h:  
+        This was used mainly in week 1 to test the function 
+        to strip nonalpha numberic symbols from words. 
+    *
+    Note: the directories were not accepted by the submission 
+        platform. However, these are the directory names and 
+        descriptions we tested with. 
+    dir_1: 
+        This is a directory used for testing which contains more
+        directories and files.
 
-## Integrate with your tools
+    empty_dir: 
+        This was an empty directory which was used for testing. 
+    
+    Foo: 
+        This was also a directory we used for testing as it contains 
+        a small amount of data which can be easily visualized. 
+    
+    layers:
+        This directory has a lot of subdirectories and files 
+        which was used for indexing testing. 
 
-- [ ] [Set up project integrations](https://gitlab.tufts.edu/nbarak02/gerp/-/settings/integrations)
+    no_sub_dir: 
+        This is a directory that has no sub directories which was 
+        used for testing the traversal. 
+    
+    sub_dir_no_files: 
+        This is a directory which has many subdirectories 
+        but that do not contains files. Was used for testing. 
+    
+    test_dir: 
+        This is a directory with some testing files and more 
+        directories which was used for testing the traversal
+        functions. 
+    *
+    common_words.txt: 
+        This contains some short common words in English 
+        which were searched for using gerp. 
 
-## Collaborate with your team
+    cmd.txt: 
+        This contains a variety of sensitive, 
+        insensitive, not found, and edge strings 
+        which was used for testing. It was also 
+        used to test the ability to read in a file which 
+        had a set of commands inside of it and execute 
+        each command in order. 
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+    flip_file.txt: 
+        This contains commands to test the closing of 
+        a file and writing into a new file function. 
+    
+    longer_words.txt: 
+        This contains some longer and less common words which 
+        can be searched for using gerp. Sensitive and insentive 
+        inputs were used. 
 
-## Test and Deploy
+    not_found.txt: 
+        This tests for strings that are not found in the directory. 
+        Both sensitive and insensitve strings are considered. 
 
-Use the built-in continuous integration in GitLab.
+    stress_test.txt: 
+        This contains shorter, longer, symbols, numbers, 
+        and many of them to stress test the program. 
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+    symbols.txt: 
+        This contains strange symbols before and after strings. 
+        Strings that only contains these symbols are also 
+        used. 
+    
+    weird_capitals.txt: 
+        This contains strings to test the sensitive and 
+        insensitive search because it capitalizes some 
+        random letters. 
+    
+E. Compile/run:
+    
+    Simply run "make" to compile our program, then type 
+    "./gerp InputDirectory OutputFile", 
+    with an input directory you want to search and an output 
+    file to print the results to. 
+    If you do not include three arguments, it will print a message 
+    "Usage : ./gerp inputDirectory outputFile" and then terminate the program.
 
-***
+F. Architectural overview: 
 
-# Editing this README
+    The overview of week 1 is that in FSTreeTraversal, FSTree interacts with
+    a pointer to a DirNode root. This allows us to traverse through 
+    the directory and eventually be able to work with all the file paths using 
+    recursion within each directory. 
+    stringProcessing in week 1 is 
+    more of a standalone function which takes away 
+    all the non-alpha numeric characters, but
+    was included in the hash_table implementation in our week 2 work. 
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+    In week 2 we have a hash_table class and a interact class along
+    with a main file. The main file makes an instance of the interact
+    class which makes an instance of the hash_table class. The 
+    interact class can handle the command inputs through its loop
+    and calls the relevent helper functions from the hash_table class. 
+    The hash_table itself will resize on its own so the user doesn't
+    have to worry about any of that. All the user needs to do
+    is put in their directory in the command line and the file 
+    that they want to write to and everything else will be taken care 
+    for them behind the scenes. 
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+    In terms of more detailed explanation of the relationships
+    within the hash_table class, the architechture is mainly 
+    in the ideas of file_struct and word_structs. The file_struct
+    contain data about the file including the actual contents
+    and is stored in a vector. The word_struct contains details
+    as to what the word is and where it can be found inside the 
+    file_struct vector. These word structs are then stored in a hash_table. 
+    To make it simple, when a person wants a word, we first go to 
+    the hash_table, then to each word_struct in that specific index, 
+    then to the vector of file structs then to the contents of the 
+    file to print out the corresponding line. In my opinion, 
+    I think it's such a cool thing to have built and it makes
+    me pretty happy to see it work :). 
 
-## Name
-Choose a self-explaining name for your project.
+    G(I): Data Structures: 
+        The most important data structure used in this assignment was
+        the hash table. This data structure was chosen because it allows
+        constant access to the specific data we are looking for. In our
+        case, when the user inputs a specific word, we run it through
+        a hash function which gives us an index in our hash table array. 
+        At that index, we have all the instances of that specific word
+        the user was looking for. This is really important because it 
+        means we do not have to traverse the entire hash table array looking
+        for a specfic word. Instead, we have O(1) access to those words
+        because we know exactly where it is stored in the hash table. 
+        Each slot of the hash table was a linked list that stored 
+        word_structs. We decided to use linked lists because we could 
+        add data members to the ends in O(1) time and did not need to 
+        worry about expanding the linked list when we added a lot of data.
+        This is known as chaining and it allows us to account for collisions. 
+        To hash our words, we used the c++ hash function. This would give
+        a really large number that was often much larger than the size 
+        of the array we were working with. This we would compress it 
+        by modding by the table size. As was shown to be most 
+        efficient in class, we resized our table when we were at 70%
+        capacity. When resizing, we needed to make sure we did not 
+        mix up any data so we had to rehash all the elements. This means
+        we have to go through each element in the hash_table and rehash it 
+        into the new table. While this does take time, we minimized the
+        number of times it has to run by starting with a larger table
+        and expanding by multiplying our size by 3 + 2 each time. 
+        
+    G(II). Time-Space complexity 
+        Indexing is O(number of words in all files). This is because 
+        we have to go word by word in all the files to create the 
+        appropriate struct then store them into the hash table. 
+        The good news is that only needs to happen once. While it 
+        does take time, it uses about 6 GB and takes about a minute
+        and a half for large Gutenberg. However, once the directory
+        is indexed, then search is much faster. It takes O(1) time 
+        to get to the appropriate location in the hash table. This
+        is the beauty of using a hash and we don't have to cycle
+        through all elements in the entire table to find the word. 
+        However, there are some inevitible collisions and the 
+        specificity of using insensitive and sensitive search required
+        us to need to traverse through the elements in the linked
+        list stored at that specific hash value. So while getting
+        to the right hash value is O(1), we have to traverse all 
+        the elements at that index in the linked list to make 
+        sure the word matches. This is not ideal but is much better 
+        than having to search through the whole table. In this way, 
+        we only search a small subset of the words by going to 
+        the hash index and looking through the linked list. 
+        However, because our load factor resizes at 0.7, 
+        this averages to about O(1) time so overall it
+        is still decently efficient. 
+        To optimize for space, we only stored the file name in 
+        one place. At first we had a file name attached to each 
+        word_struct but this ended up taking an extra 3 GB. We also
+        cleared and shrunk vectors that were no longer needed to save 
+        on data storage. 
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+    H. Testing: 
+        We tested our week 1 program using both a main and unit_tests.h. 
+        We used unit_tests.h for our stringProcessing and considered
+        all the edge cases we could think of. For example, we tested 
+        our function on strings that has only leading symbols, only
+        trailing symbols, symbols in the middle, a combination of 
+        both leading and trailing symbols, strings with no symbols as
+        well as the empty string. We used assert statements to make 
+        sure our output matched exactly what we expected. 
+        In our FSTreeTraversal program we used a main to test out our 
+        function. We used a variety of testing directories that had each 
+        very different properties. For example, we started with Foo like
+        in the spec which had a small amount of files and directories. 
+        When this output matched, we started to create more complex 
+        directories to stress test our program for edge cases. 
+        For example, we tested our program with an empty directory, 
+        one with many layers of sub directories and files, ones with
+        just files and no subdirectories and one with many 
+        subdirectories and no files. When all of these worked, we felt
+        good about submitting to the autograder. 
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+        In week 2, we tested through our main called testing main and used
+        diff to compare to the reference implementation. Our strategy was 
+        to build a small part of the functionality then diff test it hard. 
+        We would almost always find bugs when trying different test 
+        combinations so we went back and fixed them. Then we built
+        another functionality and diff tested it in the same way. 
+        For example, when we first built or case insensitive search, we 
+        first tried it on our small directory called Foo. We realized
+        we were printing duplicates, however. We then had to restucture
+        our entire code to make sure we had a system to account for 
+        duplicates as our current one did not work. When our new 
+        structure worked on Foo, we diff tested with small, medium
+        and large Gutenbergs to make sure diff worked as well. We
+        also tested using command files. Each command file
+        had a different purpose to test for different edge cases. In
+        common_words.txt, we wanted to see whether the case insensitve 
+        and sensitive were working for words that appear many times. 
+        We then wanted to make sure this same functionality would work 
+        on less common words which were found in our longer_words.txt file. 
+        We had an interesting bug found when testing with our not_found.txt. 
+        In this file, we realized our output for "not found" was lowercase
+        when we did an insensitve search even though it should print that
+        the user's original string was not found. We then had to refactor
+        our code and added some checks to make sure the output of the 
+        not found message was the original passed in string. We tested
+        more edge cases using symbols.txt and weird_capitals.txt which
+        contained strings with leading and trailing nonalphanum symbols
+        and words that were capitilized in random places for both 
+        sensitive and insensitive search. We diffed our output as usual. 
+        Finally. we also tested our program using a variety of commands
+        in our stress_test.txt. This had a combination of all the previous
+        files and was meant to ensure our code was as strong as possible. 
