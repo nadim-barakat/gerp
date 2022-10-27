@@ -15,19 +15,7 @@ B. Purpose of the program:
 
 C. Acknowledgements: 
 
-    Firstly, Milod for the slides on hashes and the basic overview
-    of a hash table and function. 
-    
-    Secondly, the many TAs that helped us: 
-    - Nickolas with clarifying the duplicates, teaching us how to have 
-    std::hash hash a word_struct, and cleaning up our functions and README
-    - Sean that checked off our design
-    - Annika that helped with connecting GitLab to Atom and instead 
-      suggesting we use Liveshare. 
-    - Jack with suggesting how to fix duplicates by creating a separate 
-      line struct. 
-    - Matthew that answered our Piazza questions. 
-    - We spoke with Mahie and his partner 
+  [TAs]
 
 D. Files provided: 
     FSTreeTraversal.cpp:
